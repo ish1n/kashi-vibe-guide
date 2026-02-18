@@ -10,7 +10,7 @@ const VibeSelector = ({ activeMood, onMoodChange }: VibeSelectorProps) => {
     <div className="sticky top-[57px] z-30 py-4 backdrop-blur-xl border-b border-white/5"
       style={{ background: "hsla(222, 47%, 11%, 0.85)" }}
     >
-      <div className="flex justify-center gap-3 flex-wrap px-4">
+      <div className="flex justify-center gap-3 px-4 flex-nowrap overflow-x-auto scrollbar-hide md:flex-wrap">
         {moods.map((mood) => (
           <button
             key={mood.value}

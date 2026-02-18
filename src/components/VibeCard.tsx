@@ -1,4 +1,5 @@
 import { motion } from "framer-motion";
+import { MapPin } from "lucide-react";
 import type { Location } from "@/data/locations";
 
 interface VibeCardProps {
@@ -7,6 +8,8 @@ interface VibeCardProps {
 }
 
 const VibeCard = ({ location, index }: VibeCardProps) => {
+  const mapsUrl = `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(location.name)}`;
+
   return (
     <motion.div
       layout
@@ -25,7 +28,18 @@ const VibeCard = ({ location, index }: VibeCardProps) => {
         />
       </div>
       <div className="p-5">
-        <h3 className="text-xl font-semibold mb-2 text-foreground">{location.name}</h3>
+        <div className="flex items-center justify-between mb-2">
+          <h3 className="text-xl font-semibold text-foreground">{location.name}</h3>
+          <a
+            href={mapsUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="text-muted-foreground hover:text-primary transition-colors"
+            aria-label={`View ${location.name} on Google Maps`}
+          >
+            <MapPin size={18} />
+          </a>
+        </div>
         <p className="text-sm text-muted-foreground leading-relaxed mb-4">
           {location.description}
         </p>

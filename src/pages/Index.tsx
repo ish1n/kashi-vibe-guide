@@ -29,7 +29,7 @@ const Index = () => {
 
       {/* Footer */}
       <footer className="text-center py-8 text-sm text-muted-foreground border-t border-white/5">
-        Built with soul. Explore Kashi your way.
+        Made with 🧡 in Varanasi | Kashi.AI
       </footer>
     </div>
   );
