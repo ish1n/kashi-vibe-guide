@@ -14,7 +14,7 @@ const VibeCard = ({ location, index }: VibeCardProps) => {
       animate={{ opacity: 1, y: 0 }}
       exit={{ opacity: 0, y: -20 }}
       transition={{ duration: 0.4, delay: index * 0.1 }}
-      className="glass-card-hover overflow-hidden"
+      className="glass-card-hover overflow-hidden bg-white/5"
     >
       <div className="h-[200px] overflow-hidden">
         <img
@@ -25,7 +25,7 @@ const VibeCard = ({ location, index }: VibeCardProps) => {
         />
       </div>
       <div className="p-5">
-        <h3 className="text-xl font-semibold mb-2">{location.name}</h3>
+        <h3 className="text-xl font-semibold mb-2 text-foreground">{location.name}</h3>
         <p className="text-sm text-muted-foreground leading-relaxed mb-4">
           {location.description}
         </p>
