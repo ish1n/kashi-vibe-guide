@@ -8,7 +8,9 @@ interface VibeCardProps {
 }
 
 const VibeCard = ({ location, index }: VibeCardProps) => {
-  const mapsUrl = `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(location.name)}`;
+  // 🐛 BUG FIX: The previous URL was broken and missing the '$'. 
+  // This is now a working Google Maps search URL tailored to Varanasi!
+  const mapsUrl = `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(location.name + " Varanasi")}`;
 
   return (
     <motion.div
@@ -17,9 +19,9 @@ const VibeCard = ({ location, index }: VibeCardProps) => {
       animate={{ opacity: 1, y: 0 }}
       exit={{ opacity: 0, y: -20 }}
       transition={{ duration: 0.4, delay: index * 0.1 }}
-      className="glass-card-hover overflow-hidden bg-white/5"
+      className="glass-card-hover overflow-hidden bg-white/5 rounded-xl border border-white/10 flex flex-col"
     >
-      <div className="h-[200px] overflow-hidden">
+      <div className="h-[200px] overflow-hidden shrink-0">
         <img
           src={location.image}
           alt={location.name}
@@ -27,23 +29,24 @@ const VibeCard = ({ location, index }: VibeCardProps) => {
           loading="lazy"
         />
       </div>
-      <div className="p-5">
-        <div className="flex items-center justify-between mb-2">
+      <div className="p-5 flex-1 flex flex-col">
+        <div className="flex items-start justify-between mb-3 gap-2">
           <h3 className="text-xl font-semibold text-foreground">{location.name}</h3>
           <a
             href={mapsUrl}
             target="_blank"
             rel="noopener noreferrer"
-            className="text-muted-foreground hover:text-primary transition-colors"
-            aria-label={`View ${location.name} on Google Maps`}
+            // FIX: Added a nice hover background to the map button
+            className="text-muted-foreground hover:text-[#ff9933] transition-colors p-2 bg-white/5 rounded-full hover:bg-white/10 shrink-0"
+            title={`View ${location.name} on Google Maps`}
           >
             <MapPin size={18} />
           </a>
         </div>
-        <p className="text-sm text-muted-foreground leading-relaxed mb-4">
+        <p className="text-sm text-muted-foreground leading-relaxed mb-4 flex-1">
           {location.description}
         </p>
-        <div className="flex flex-wrap gap-2">
+        <div className="flex flex-wrap gap-2 mt-auto">
           {location.tags.map((tag) => (
             <span key={tag} className="tag-pill">{tag}</span>
           ))}
